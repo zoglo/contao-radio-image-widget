@@ -74,7 +74,9 @@ as text.
 
 ## Template
 
-Lives in `@Contao/backend/widget/radio_image.html.twig` and can be overridden through the template hierarchy. It receives:
+Lives in `@Contao/backend/widget/radio_image.html.twig` and can be overridden through the template hierarchy.
+
+## Images
 
 Images are rendered with `backend_icon()`, so width and height are set from the image,
 dark theme variants (`side--dark.svg`) are supported by default.

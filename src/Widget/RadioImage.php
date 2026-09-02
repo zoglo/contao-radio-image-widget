@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Zoglo\RadioImageWidgetBundle\Widget;
 
+use Contao\Input;
 use Contao\StringUtil;
 use Contao\System;
 use Contao\Widget;
@@ -66,6 +67,7 @@ class RadioImage extends Widget
             $objContainer->getParameter('contao.web_dir'). '/' . $this->imagePath,
         ], 'is_dir');
 
+        $fallback = empty($this->varValue) && !Input::isPost();
         $arrOptions = [];
 
         foreach ($this->arrOptions as $arrOption) {
@@ -75,7 +77,7 @@ class RadioImage extends Widget
                 'value' => $strValue,
                 'label' => $arrOption['label'] ?? $strValue,
                 'image' => $this->findImage($strValue, $directories),
-                'checked' => (bool) $this->isChecked($arrOption),
+                'checked' => $fallback ? !$arrOptions : (bool) $this->isChecked($arrOption),
             ];
         }
 

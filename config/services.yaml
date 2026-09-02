@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autoconfigure: true
+
+    zoglo_radio_image_widget.listener.add_assets:
+        class: Zoglo\RadioImageWidgetBundle\EventListener\BackendAssetsListener
+        arguments:
+            - '@contao.routing.scope_matcher'
+            - '@assets.packages'

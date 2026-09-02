@@ -1,0 +1,31 @@
+{% set table_attributes = attrs()
+    .set('id', 'ctrl_' ~ id)
+    .addClass(['radio_image_widget', class])
+    .addStyle(style|default)
+%}
+<table{{ table_attributes }}>
+    {%- for row in options|batch(cols) -%}
+        <tr>{{ _self.row(row, name, loop.index0, attributes) }}</tr>
+    {%- endfor -%}
+</table>
+
+{% macro row(options, name, row_index, attributes) %}
+    {%- for option in options -%}
+        {%- set input_id = "#{name}_#{row_index}_#{loop.index0}" -%}
+        {%- set input_attributes = attrs(attributes)
+            .set('id', input_id)
+            .addClass('tl_radio')
+            .set('type', 'radio')
+            .set('name', name)
+            .set('value', option.value)
+            .set('data-action', 'focus->contao--scroll-offset#store')
+            .setIfExists('checked', option.checked)
+        -%}
+        <td>
+            <input{{ input_attributes }}>
+            <label for="{{ input_id }}">
+                {{- option.image ? backend_icon(option.image, option.label, attrs().set('data-contao--tooltips-target', 'tooltip')) : option.label -}}
+            </label>
+        </td>
+    {%- endfor -%}
+{% endmacro %}

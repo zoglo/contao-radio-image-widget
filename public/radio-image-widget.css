@@ -1,0 +1,32 @@
+.radio_image_widget {
+    margin: 3px 0;
+
+    tr {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    td {
+        padding: 6px;
+        display: inline-flex;
+        align-items: center;
+        column-gap: 4px;
+        border: 1px solid var(--form-border);
+        border-radius: var(--border-radius);
+
+        &:has(input:checked) {
+            border-color: var(--blue);
+        }
+    }
+
+    label {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    img {
+        display: block;
+    }
+}
